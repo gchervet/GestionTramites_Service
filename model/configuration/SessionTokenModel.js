@@ -17,8 +17,12 @@ exports.DeleteTokenLogically = function(data){
 
 exports.CreateNewSessionToken = function(data){
   console.log('SessionToken/CreateNewSessionToken');
+  var admin = 0;
+  if(data.admin){
+    admin  = 1;
+  }
   return new sql.ConnectionPool(config).connect().then(pool => {
-    return pool.request().query("INSERT INTO SessionToken values ('"+ data.username +"','"+ data.token + "',getdate(),DATEADD(ss," + data.expireSeconds + ",getdate()),0)")
+    return pool.request().query("INSERT INTO SessionToken values ('"+ data.username +"','"+ data.token + "',getdate(),DATEADD(ss," + data.expireSeconds + ",getdate()),0," + admin + ")")
   });
 }
 
@@ -34,6 +38,21 @@ exports.ValidateAuthentication = function(username, sessionToken){
                                 "where sessiontoken = '" + sessionToken + "' " +
                                 "and username = '" + username + "' " +
                                 "and expired = 0 ")
+  });
+}
+
+exports.ValidateAdminAuthentication = function(username, sessionToken){
+  console.log('SessionToken/ValidateAuthentication');
+  return new sql.ConnectionPool(config).connect().then(pool => {
+    return pool.request().query("SELECT [Username] " +
+                                ",[SessionToken] " +
+                                ",[CreationDate] " +
+                                ",[ExpirationDate] " +
+                                ",[Expired] " +
+                                "FROM [SessionToken] " +
+                                "where sessiontoken = '" + sessionToken + "' " +
+                                "and username = '" + username + "' " +
+                                "and admin = 1 and expired = 0 ")
   });
 }
 

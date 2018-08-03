@@ -29,3 +29,20 @@ module.exports.GetRolePermissionByUsername = function(req, res){
         }
     });
 }
+
+module.exports.GetRoleListByUsername = function(req, res){
+    return RoleModel.GetRoleListByUsername(username).then(result => {
+        
+        var rtn = [];
+        if(result.recordset){
+            result.recordset.forEach(element => {
+                rtn.push(
+                    {
+                        IdRole: element.IdRole,
+                        RoleName: element.Name
+                    });
+            });
+        }
+        res.json(rtn);
+    });
+}

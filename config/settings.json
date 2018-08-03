@@ -1,0 +1,7 @@
+{
+    "admin_user": "admin",
+    "admin_password": "admin",
+    "authentication_type":"AD",
+    "initial_catalog": "database-name"
+
+}
