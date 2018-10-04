@@ -1,10 +1,10 @@
 {
-  "server": "192.0.2.240",
+  "server": "127.0.0.1",
   "driver": "msnodesqlv8",
-  "user":"gchervet",
+  "user":"root",
   "domain":"KENNEDY",
-  "database":"UK_Configuration_dev",
-  "password":"741852852",
-  "connectionString": "Driver=msnodesqlv8;Server=192.0.2.240;Database=UK_Configuration_dev;Trusted_Connection=yes;Integrated_Security=yes",
-  "port": 1433
+  "database":"gestion_conf_dev",
+  "password":"",
+  "connectionString": "Driver=msnodesqlv8;Server=127.0.0.1;Database=gestion_data_dev;Trusted_Connection=yes;",
+  "port": 3306
 }

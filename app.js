@@ -51,6 +51,7 @@ var TraEstadoInstanciaService = require('./service/business/TraEstadoInstanciaSe
 var menuController = require('./controllers/configuration/MenuController');
 var roleController = require('./controllers/configuration/RoleController');
 // Business Controllers
+var payperticController = require('./controllers/business/PayperticController');
 var authenticateController = require('./controllers/business/SessionController');
 var uniAlumnoController = require('./controllers/business/UniAlumnoController');
 var uniRegionalController = require('./controllers/business/UniRegionalController');
